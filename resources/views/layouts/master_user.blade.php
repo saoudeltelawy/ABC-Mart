@@ -42,6 +42,8 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
+                
+
                 <li><a href="./shop-grid.html">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -53,6 +55,7 @@
                 </li>
                 <li><a href="./blog.html">Blog</a></li>
                 <li><a href="./contact.html">Contact</a></li>
+                <li><a href="/dashboard">Admin </a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
