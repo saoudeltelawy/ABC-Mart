@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 <head>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
   <title> @yield('title') </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,11 +44,19 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/admin/dashboard" class="nav-link">Home</a>
       </li>
-      {{-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li> --}}
+       <li class="nav-item d-none d-sm-inline-block">
+       <a href="{{url('/home')}}" class="nav-link">User View</a>
+      </li> 
     </ul>
-
+    <ul>
+      @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+          <li>
+              <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                  {{ $properties['native'] }}
+              </a>
+          </li>
+      @endforeach
+  </ul>
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">

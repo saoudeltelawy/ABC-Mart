@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,23 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.admindashboard');
 // });
 
-Route::group(['prefix' => 'admin' , 'namespace'=>'admin'], function () {
+
+
+
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+        
+        Route::group(['prefix' => 'admin' , 'namespace'=>'admin'], function () {
     
-Route::get('/dashboard' , 'adminController@main');
+            Route::get('/dashboard' , 'adminController@main')->name('dash.main');
+            
+            });
 
-
-});
-
+            
+    });
 
