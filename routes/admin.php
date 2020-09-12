@@ -32,6 +32,8 @@ Route::group(
         Route::group(['prefix' => 'admin' , 'namespace'=>'admin'], function () {
     
             Route::get('/dashboard' , 'adminController@main')->name('dash.main');
+
+            Route::resource('/user', 'UserController');
             
             });
 
