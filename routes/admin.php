@@ -29,7 +29,7 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ 
         
-        Route::group(['prefix' => 'admin' , 'namespace'=>'admin'], function () {
+        Route::group(['prefix' => 'admin' , 'namespace'=>'admin' , 'middleware' => ['web' , 'auth']], function () {
     
             Route::get('/dashboard' , 'adminController@main')->name('dash.main');
 

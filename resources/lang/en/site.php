@@ -16,7 +16,19 @@ return [
     'edt' => 'Edit',
     'dlt' => 'Delete',
     'crt' => 'Add',
+    'udt' => 'Update',
+    'choose_role' => 'Choose Role',
+    'choose_permissions' => 'Choose Permissions',
+    'red' => 'Read',
+    'Manager' => 'Manager',
+    'admin' => 'Admin',
+    'user' => 'User',
     'userview' => 'User View',
-
+    'adduser' => 'Add User',
+    'username' => 'UserName',
+    'email' => 'Email Address',
+    'pw' => 'Password',
+    'pwc' => 'Password Confirm',
+    'added_successfuly' => 'Added Successfuly',
 
 ];

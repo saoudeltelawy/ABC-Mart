@@ -16,10 +16,10 @@ class UserController extends Controller
     public function index()
     {
 
+        $numofallusers = User::all();
+        $allusers = User::paginate(5);
 
-        $allusers = User::all();
-
-        return view('admin.user.index' , compact('allusers'));
+        return view('admin.user.index' , compact('allusers' , 'numofallusers'));
         
 
     }
@@ -45,7 +45,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name'                  => 'required',
+                'email'                 => 'required',
+                'password'              => 'required|confirmed',
+                
+            ]
+            );
+           
+        $requested_data = $request->except(['password' , 'password_confirmation' , 'permissions' , 'role'] );
+
+        $requested_data['password'] = bcrypt($request->password);
+
+        $user = User::create($requested_data);
+        $user->attachRole($request->role);
+        $user->syncPermissions($request->permissions);
+
+        session()->flash('success' , __('site.added_successfuly'));
+
+        return redirect('/admin/user');
     }
 
     /**

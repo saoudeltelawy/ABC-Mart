@@ -34,7 +34,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3> {{$allusers->count()}} </h3>
+                        <h3> {{$numofallusers->count()}} </h3>
 
                         <p>@lang('site.usernumber')</p>
                     </div>
@@ -83,28 +83,41 @@
                                 <th>@lang('site.id')</th>
                                 <th>@lang('site.name')</th>
                                 <th>@lang('site.email')</th>
+                                @if (auth()->user()->haspermission('users-delete'))
                                 <th>@lang('site.action')</th>
+                                @endif
                             </tr>
 
                         </thead>
                         <tbody>
                             @if ($allusers->count()>0)
-                            <tr>
+                           
                                 @foreach ($allusers as $user)
+
+                                <tr>
+
                                 <th>{{$user->id}}</th>
                                 <th>{{$user->name}}</th>
                                 <th>{{$user->email}}</th>
+
+                                @if (auth()->user()->haspermission('users-delete'))
                                 <th>
-                                <a href='{{url("admin/user/{$user->id}/edit")}}' class="btn btn-primary btn-sm "> @lang('site.edt') </a>
-                                <form action='{{url("/admin/user/{$user->id}")}}' method="post" style="display: inline-block">
-                                    {{ csrf_field() }}
-                                    {{method_field('delete')}}
-                                    <button type="submit" class="btn btn-danger btn-sm ">Delete</button>
-                                </form>
-                                
-                                </th>
+                                    <a href='{{url("admin/user/{$user->id}/edit")}}' class="btn btn-primary btn-sm "> @lang('site.edt') </a>
+                                    <form action='{{url("/admin/user/{$user->id}")}}' method="post" style="display: inline-block">
+                                        {{ csrf_field() }}
+                                        {{method_field('delete')}}
+                                        <button type="submit" class="btn btn-danger btn-sm ">@lang('site.dlt')</button>
+                                    </form>
+                                    
+                                    </th>
+                                @endif
+                               
+
+                                </tr>
+
+
                                 @endforeach
-                            </tr>
+                          
 
                             @else
                                 <h2> @lang('site.ndf') </h2>
@@ -112,9 +125,16 @@
                             
                         </tbody>
                     </table>
-                    <div class="input-group input-group col-2 offset-5 p-2"  >
-                        <a href="{{url('/admin/user/create')}}" class="btn btn-success col-12"> <i class="fa fa-plus"></i>  @lang('site.crt')</a>
+                    <div class="card-footer clearfix col-12">
+                        <ul class="pagination pagination-sm m-0 float-right col-3 p-2  offset-7 float-right">
+                        <li class="page-item float-right">{{$allusers->links()}}</li>
+
+                        </ul>
+                        <div class="input-group input-group  p-2 col-2"  >
+                            <a href="{{url('/admin/user/create')}}" class="btn btn-success col-12"> <i class="fa fa-plus"></i>  @lang('site.crt')</a>
+                        </div>
                     </div>
+                    
                 </div>
                 <!-- /.card-body -->
             </div>
