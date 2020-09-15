@@ -17,13 +17,9 @@ return [
             'users' => 'c,r,u,d',
         ],
 
-        'admin' => [
-            'users' => 'c,r,u',
-        ],
+        'admin' => [],
 
-        'user' => [
-            'users' => 'r',
-        ],
+        'user' => []
 
     ],
 

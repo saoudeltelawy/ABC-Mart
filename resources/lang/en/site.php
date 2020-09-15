@@ -30,5 +30,8 @@ return [
     'pw' => 'Password',
     'pwc' => 'Password Confirm',
     'added_successfuly' => 'Added Successfuly',
+    'update_successfuly' => 'Update Successfuly',
+    'cncl' => 'Cancel',
+
 
 ];

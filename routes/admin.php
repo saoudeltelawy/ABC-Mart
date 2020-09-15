@@ -34,7 +34,8 @@ Route::group(
             Route::get('/dashboard' , 'adminController@main')->name('dash.main');
 
             Route::resource('/user', 'UserController');
-            
+
+          
             });
 
             

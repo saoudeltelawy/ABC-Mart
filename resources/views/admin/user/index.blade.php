@@ -62,7 +62,13 @@
 
                     <div class="card-tools">
                        
-                     
+
+
+
+
+
+
+                     <form action=" {{route('user.index')}} " method="get">
                         <div class="input-group input-group-sm " style="width: 150px;">
                             <input type="text" name="table_search" class="form-control float-right"
                                 placeholder="@lang('site.search')">
@@ -71,7 +77,13 @@
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
-                        
+                    </form>
+
+
+
+
+
+
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -83,35 +95,44 @@
                                 <th>@lang('site.id')</th>
                                 <th>@lang('site.name')</th>
                                 <th>@lang('site.email')</th>
-                                @if (auth()->user()->haspermission('users-delete'))
+                                @if (auth()->user()->isAbleTo('users_delete|users_update'))
                                 <th>@lang('site.action')</th>
                                 @endif
                             </tr>
 
                         </thead>
                         <tbody>
+
                             @if ($allusers->count()>0)
                            
                                 @foreach ($allusers as $user)
-
+                         
                                 <tr>
 
                                 <th>{{$user->id}}</th>
                                 <th>{{$user->name}}</th>
                                 <th>{{$user->email}}</th>
 
-                                @if (auth()->user()->haspermission('users-delete'))
                                 <th>
-                                    <a href='{{url("admin/user/{$user->id}/edit")}}' class="btn btn-primary btn-sm "> @lang('site.edt') </a>
+
+                                @if (auth()->user()->isAbleTo('users_update'))
+                                
+                                    <a href='{{url("admin/user/{$user->id}/edit")}}' class="btn btn-primary btn-sm "> <i class="fa fa-edit"></i> @lang('site.edt') </a>
+
+                                @endif
+
+
+                                @if (auth()->user()->isAbleTo('users_delete'))
+
                                     <form action='{{url("/admin/user/{$user->id}")}}' method="post" style="display: inline-block">
                                         {{ csrf_field() }}
                                         {{method_field('delete')}}
-                                        <button type="submit" class="btn btn-danger btn-sm ">@lang('site.dlt')</button>
+                                        <button type="submit" class="btn btn-danger btn-sm "> <i class="fa fa-trash"></i> @lang('site.dlt')</button>
                                     </form>
-                                    
-                                    </th>
+
                                 @endif
-                               
+                                
+                                    </th>
 
                                 </tr>
 
@@ -126,13 +147,18 @@
                         </tbody>
                     </table>
                     <div class="card-footer clearfix col-12">
-                        <ul class="pagination pagination-sm m-0 float-right col-3 p-2  offset-7 float-right">
+                        {{-- <ul class="pagination pagination-sm m-0 float-right col-3 p-2  offset-7 float-right">
                         <li class="page-item float-right">{{$allusers->links()}}</li>
 
-                        </ul>
+                        </ul> --}}
+
+                        @if ( auth()->user()->isAbleTo('users_create') )
                         <div class="input-group input-group  p-2 col-2"  >
                             <a href="{{url('/admin/user/create')}}" class="btn btn-success col-12"> <i class="fa fa-plus"></i>  @lang('site.crt')</a>
                         </div>
+                        @endif
+
+                      
                     </div>
                     
                 </div>

@@ -105,32 +105,32 @@
 
                                             <div class="custom-control custom-checkbox">
                                                 <input class="custom-control-input" type="checkbox" id="customCheckbox1"
-                                                    value="users-create" name="permissions[]">
+                                                    value="users_create" name="permissions[]">
                                                 <label for="customCheckbox1"
                                                     class="custom-control-label">@lang('site.crt')</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input class="custom-control-input" type="checkbox" id="customCheckbox3"
-                                                    value="users-read" name="permissions[]">
+                                                    value="users_read" name="permissions[]">
                                                 <label for="customCheckbox3"
                                                     class="custom-control-label">@lang('site.red')</label>
                                             </div>
 
 
 
-                                            @if (auth()->user()->haspermission('users-delete'))
+                                            @if (auth()->user()->haspermission('users_delete'))
 
                                             <div class="custom-control custom-checkbox">
                                                 <input class="custom-control-input" type="checkbox" id="customCheckbox2"
-                                                    value="users-update" name="permissions[]">
+                                                    value="users_update" name="permissions[]">
                                                 <label for="customCheckbox2"
                                                     class="custom-control-label">@lang('site.udt')</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input class="custom-control-input" type="checkbox" id="customCheckbox4"
-                                                    value="users-delete" name="permissions[]">
+                                                    value="users_delete" name="permissions[]">
                                                 <label for="customCheckbox4"
                                                     class="custom-control-label">@lang('site.dlt')</label>
                                             </div>
@@ -151,7 +151,7 @@
 
 
 
-                                            @if (auth()->user()->haspermission('users-delete'))
+                                            @if (auth()->user()->haspermission('users_delete'))
                                             <div class="custom-control custom-radio">
                                                 <input class="custom-control-input" type="radio" id="customRadio1"
                                                     name="role" value="manager">

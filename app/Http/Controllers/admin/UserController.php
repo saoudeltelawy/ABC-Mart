@@ -8,16 +8,38 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+
+
+
+    public function __construct()
+    {
+        $this->middleware(['permission:users_read'])->only('index');
+        $this->middleware(['permission:users_update'])->only('edit');
+        $this->middleware(['permission:users_create'])->only('create');
+        $this->middleware(['permission:users_delete'])->only('destroy');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
+        
+
+        $allusers = User::whereRoleIs(['admin' , 'user'])->when($request->table_search , function($alldata) use($request){
+
+            return $alldata->where( 'name' , 'like' , '%' . $request->table_search . '%')
+            ->orWhere( 'email' , 'like' , '%' . $request->table_search . '%')
+            ->orwhere( 'id' , 'like' , '%' . $request->table_search . '%');
+
+        })->get();
+
         $numofallusers = User::all();
-        $allusers = User::paginate(5);
 
         return view('admin.user.index' , compact('allusers' , 'numofallusers'));
         
@@ -62,21 +84,12 @@ class UserController extends Controller
         $user->attachRole($request->role);
         $user->syncPermissions($request->permissions);
 
+
         session()->flash('success' , __('site.added_successfuly'));
 
         return redirect('/admin/user');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -86,7 +99,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        
+        return view ( ' admin.user.edit' , compact('user') );
+
     }
 
     /**
@@ -98,7 +113,34 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        
+        $request->validate(
+            [
+                'name'                  => 'required',
+                'email'                 => 'required',
+            ]
+            );
+
+            $requested_data = $request->except([ 'permissions' , 'role' ] );
+            $user->update( $requested_data);
+
+            $user->detachPermissions( [ 'users_create' , 'users_read' , 'users_update' , 'users_delete' ] );
+            $user->detachRoles(['manager', 'admin' , 'user']); 
+
+            $user->attachRole($request->role);
+            $user->syncPermissions($request->permissions);
+         
+            session()->flash('success' , __('site.update_successfuly'));
+
+            return redirect('/admin/user');
+
+
+
+
+
+
+
+
     }
 
     /**
@@ -109,6 +151,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->detachPermissions( [ 'users_create' , 'users_read' , 'users_update' , 'users_delete' ] );
+        $user->detachRoles(['manager', 'admin' , 'user']);
+         User::destroy($user);
+         return redirect('/admin/user');
+      
     }
 }
