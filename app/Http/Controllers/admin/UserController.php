@@ -37,7 +37,7 @@ class UserController extends Controller
             ->orWhere( 'email' , 'like' , '%' . $request->table_search . '%')
             ->orwhere( 'id' , 'like' , '%' . $request->table_search . '%');
 
-        })->get();
+        })->latest()->paginate(5);
 
         $numofallusers = User::all();
 
@@ -151,10 +151,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->detachPermissions( [ 'users_create' , 'users_read' , 'users_update' , 'users_delete' ] );
-        $user->detachRoles(['manager', 'admin' , 'user']);
-         User::destroy($user);
-         return redirect('/admin/user');
-      
+       
+        $user->delete();
+
+        session()->flash('success' , __('site.delete_successfuly'));
+
+        return redirect()->route('user.index');
+
     }
 }

@@ -71,7 +71,7 @@
                      <form action=" {{route('user.index')}} " method="get">
                         <div class="input-group input-group-sm " style="width: 150px;">
                             <input type="text" name="table_search" class="form-control float-right"
-                                placeholder="@lang('site.search')">
+                                placeholder="@lang('site.search')" value=" {{request()->table_search}} " >
 
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -124,10 +124,10 @@
 
                                 @if (auth()->user()->isAbleTo('users_delete'))
 
-                                    <form action='{{url("/admin/user/{$user->id}")}}' method="post" style="display: inline-block">
+                                    <form action="{{route('user.destroy',$user->id)}}" method="post" style="display: inline-block">
                                         {{ csrf_field() }}
-                                        {{method_field('delete')}}
-                                        <button type="submit" class="btn btn-danger btn-sm "> <i class="fa fa-trash"></i> @lang('site.dlt')</button>
+                                        <input type="hidden" name="_method" value="DELETE" >
+                                        <button type="submit" class="btn btn-danger delete btn-sm " data_name="{{$user->name}}"> <i class="fa fa-trash"></i> @lang('site.dlt')</button>
                                     </form>
 
                                 @endif
@@ -147,10 +147,10 @@
                         </tbody>
                     </table>
                     <div class="card-footer clearfix col-12">
-                        {{-- <ul class="pagination pagination-sm m-0 float-right col-3 p-2  offset-7 float-right">
-                        <li class="page-item float-right">{{$allusers->links()}}</li>
+                        <ul class="pagination pagination-sm m-0 float-right col-3 p-2  offset-7 float-right">
+                        <li class="page-item float-right">{{$allusers->appends(request()->query())->links()}}</li>
 
-                        </ul> --}}
+                        </ul> 
 
                         @if ( auth()->user()->isAbleTo('users_create') )
                         <div class="input-group input-group  p-2 col-2"  >

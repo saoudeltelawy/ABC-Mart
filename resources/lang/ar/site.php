@@ -31,8 +31,11 @@ return [
     'cncl' => 'ألغاء',
     'pwc' => 'تأكيد كلمة المرور',
     'added_successfuly' => 'تمت الاضافة بنجاح',
+    'delete_successfuly' => ' تم الحذف بنجاح',
     'update_successfuly' => 'تم التعديل بنجاح',
-    
+    'yes' => 'نعم',
+    'no' => 'لا',
+    'confirm_delete' => ' هل انت متأكد من عملية الحذف ' ,
     
 
 

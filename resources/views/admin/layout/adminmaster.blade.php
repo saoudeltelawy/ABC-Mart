@@ -77,7 +77,7 @@
             @endforeach
           </ul>
         </li>
-       
+
 
       </ul>
 
@@ -105,33 +105,33 @@
         <!-- Authentication Links -->
         @guest
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+          <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
         </li>
         @if (Route::has('register'))
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
         @endif
-    @else
+        @else
         <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
         </li>
-    @endguest
-    </ul>
+        @endguest
+      </ul>
 
     </nav>
     <!-- /.navbar -->
@@ -164,7 +164,7 @@
                with font-awesome or any other icon font library -->
 
 
-          @if (auth()->user()->hasRole('manager|admin'))
+            @if (auth()->user()->hasRole('manager|admin'))
 
             <li class="nav-item">
               <a href="{{ url('/admin/user')}}" class="nav-link">
@@ -172,8 +172,8 @@
                 <p> @lang('site.users') </p>
               </a>
             </li>
-          @endif
-          
+            @endif
+
 
           </ul>
         </nav>
@@ -193,7 +193,53 @@
     </div>
     <!-- /.content-wrapper -->
 
+    <script>
 
+$(document).ready(function () {
+
+// $('.sidebar-menu').tree();
+
+// //icheck
+// $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+//     checkboxClass: 'icheckbox_minimal-blue',
+//     radioClass: 'iradio_minimal-blue'
+// });
+
+//delete
+$('.delete').click(function (e) {
+
+    var that = $(this)
+
+    e.preventDefault();
+
+    
+    var fname = $(".delete").attr("data_name");
+     
+    var n = new Noty({
+        text: "@lang('site.confirm_delete')" +  fname ,
+        type: "warning",
+        killer: true,
+        buttons: [
+            Noty.button("@lang('site.yes')", 'btn btn-success mr-2', function () {
+                that.closest('form').submit();
+            }),
+
+            Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
+                n.close();
+            })
+        ]
+    });
+
+    n.show();
+
+});//end of delete
+
+
+});//end of ready
+
+</script>
+
+    
 
     <footer class="main-footer">
       <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>

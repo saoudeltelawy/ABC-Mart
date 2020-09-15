@@ -31,7 +31,10 @@ return [
     'pwc' => 'Password Confirm',
     'added_successfuly' => 'Added Successfuly',
     'update_successfuly' => 'Update Successfuly',
+    'delete_successfuly' => 'Delete Successfuly',
     'cncl' => 'Cancel',
-
+    'yes' => 'Yes',
+    'no' => 'No',
+    'confirm_delete' => 'Are You Sure From Deleting ' ,
 
 ];
