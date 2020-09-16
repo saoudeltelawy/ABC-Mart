@@ -150,7 +150,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="{{asset('Admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{asset('uploads/users/' . Auth::user()->profile_image)}}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block"> {{ Auth::user()->email }} </a>
@@ -213,7 +213,7 @@ $('.delete').click(function (e) {
     e.preventDefault();
 
     
-    var fname = $(".delete").attr("data_name");
+    var fname = that.attr("data_name");
      
     var n = new Noty({
         text: "@lang('site.confirm_delete')" +  fname ,

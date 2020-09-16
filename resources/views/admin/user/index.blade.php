@@ -95,13 +95,14 @@
                                 <th>@lang('site.id')</th>
                                 <th>@lang('site.name')</th>
                                 <th>@lang('site.email')</th>
+                                <th>@lang('site.img')</th>
                                 @if (auth()->user()->isAbleTo('users_delete|users_update'))
                                 <th>@lang('site.action')</th>
                                 @endif
                             </tr>
 
                         </thead>
-                        <tbody>
+                        <tbody class="align-self-center">
 
                             @if ($allusers->count()>0)
                            
@@ -112,6 +113,7 @@
                                 <th>{{$user->id}}</th>
                                 <th>{{$user->name}}</th>
                                 <th>{{$user->email}}</th>
+                                <th> <img src="{{asset('uploads/users/' . $user->profile_image)}}" class="img-thumbnail " width="65px" height="65px" alt="" srcset=""> </th>
 
                                 <th>
 

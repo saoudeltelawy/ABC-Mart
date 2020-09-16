@@ -35,6 +35,7 @@ return [
     'update_successfuly' => 'تم التعديل بنجاح',
     'yes' => 'نعم',
     'no' => 'لا',
+    'img' => 'صورة',
     'confirm_delete' => ' هل انت متأكد من عملية الحذف ' ,
     
 

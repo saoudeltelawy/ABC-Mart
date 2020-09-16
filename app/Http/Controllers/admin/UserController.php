@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -76,8 +78,16 @@ class UserController extends Controller
             ]
             );
            
-        $requested_data = $request->except(['password' , 'password_confirmation' , 'permissions' , 'role'] );
+        $requested_data = $request->except(['password' , 'password_confirmation' , 'permissions' , 'role' , 'profile_image'] );
 
+            if($request->profile_image){
+
+               Image::make($request->profile_image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/users/' . $request->profile_image->hashName()));
+
+            }
+        $requested_data['profile_image'] = $request->profile_image->hashName();
         $requested_data['password'] = bcrypt($request->password);
 
         $user = User::create($requested_data);
@@ -151,6 +161,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+
+        if($user->profile_image != 'Profile_default.png'){
+
+           Storage::disk('public_uploads')->delete('/users/' . $user->profile_image);
+
+        }
        
         $user->delete();
 

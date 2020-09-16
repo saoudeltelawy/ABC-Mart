@@ -35,6 +35,7 @@ return [
     'cncl' => 'Cancel',
     'yes' => 'Yes',
     'no' => 'No',
+    'img' => 'Image',
     'confirm_delete' => 'Are You Sure From Deleting ' ,
 
 ];

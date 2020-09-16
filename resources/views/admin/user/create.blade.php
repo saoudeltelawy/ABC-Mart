@@ -40,16 +40,7 @@
                     <!-- /.card-header -->
                     @include('admin.fastinclude.errors')
 
-                    {{--                     
-@if ($errors ?? ''->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors ?? ''->all() as $error)
-            <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                </div>
-                @endif --}}
+
 
 
                 <!-- form start -->
@@ -63,16 +54,22 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> @lang('site.username') </label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter username"
-                                value=" {{old('name')}} " name="name">
+                            <label for="exampleInputname1"> @lang('site.username') </label>
+                            <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter username"
+                                value="{{old('name')}}" name="name">
 
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">@lang('site.email')</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
-                                value=" {{old('email')}} " name="email">
+                                value="{{old('email')}}" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputImg1">@lang('site.img')</label>
+                            <input type="file" class="form-control" id="exampleInputImg1" 
+                                 name="profile_image">
                         </div>
 
                         <div class="form-group">
@@ -82,8 +79,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">@lang('site.pwc')</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
+                            <label for="exampleInputPassword2">@lang('site.pwc')</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2"
                                 placeholder="password confirmation" name="password_confirmation">
                         </div>
 
