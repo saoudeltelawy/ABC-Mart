@@ -147,6 +147,9 @@ return [
 
     'attributes' => [
         'name'                  => 'الاسم',
+        'role'                  => 'نوع',
+        'permissions'           => 'صلاحيات',
+        'profile_image'         => 'الصورة الشخصية',
         'username'              => 'اسم المُستخدم',
         'email'                 => 'البريد الالكتروني',
         'first_name'            => 'الاسم الأول',

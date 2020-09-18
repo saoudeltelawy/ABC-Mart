@@ -146,6 +146,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'permissions'           => 'Permissions',
+        'profile_image'         => 'Profile Picture',
+    ],
 
 ];

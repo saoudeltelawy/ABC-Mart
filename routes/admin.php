@@ -35,6 +35,7 @@ Route::group(
 
             Route::resource('/user', 'UserController');
 
+            Route::resource('/Category', 'CategoryController');
           
             });
 

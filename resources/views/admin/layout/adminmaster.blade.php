@@ -174,6 +174,12 @@
             </li>
             @endif
 
+            <li class="nav-item">
+              <a href="{{ url('/admin/Category')}}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p> @lang('site.Category') </p>
+              </a>
+            </li>
 
           </ul>
         </nav>
@@ -219,6 +225,7 @@ $('.delete').click(function (e) {
         text: "@lang('site.confirm_delete')" +  fname ,
         type: "warning",
         killer: true,
+        layout:'center',
         buttons: [
             Noty.button("@lang('site.yes')", 'btn btn-success mr-2', function () {
                 that.closest('form').submit();
@@ -233,6 +240,20 @@ $('.delete').click(function (e) {
     n.show();
 
 });//end of delete
+
+
+$(".image").change(function() {
+  if (this.files && this.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('.image_preview').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(this.files[0]); // convert to base64 string
+  }
+});
+
 
 
 });//end of ready

@@ -68,6 +68,17 @@
                                     placeholder="Enter email" value=" {{$user->email}} " name="email">
                             </div>
 
+                            
+
+                        <div class="form-group">
+                            <label for="exampleInputImg1">@lang('site.img')</label>
+                            <input type="file" class="form-control image" id="exampleInputImg1" 
+                            name="profile_image">
+                        </div>
+                        <div class="form-group">
+                            <img src=" {{asset('uploads/users/' . $user->profile_image)}} " alt="" srcset="" class="image_preview img-thumbnail" style="width: 100px;height:100px">
+                        </div>
+
 
 
                         </div>

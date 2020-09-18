@@ -12,7 +12,7 @@ return [
     'home' => 'Home',
     'lang' => 'Language',
     'action' => 'Action',
-    'nfs' => 'UnFortuntly we didnt found any records till now',
+    'ndf' => 'UnFortuntly we didnt found any records till now',
     'edt' => 'Edit',
     'dlt' => 'Delete',
     'crt' => 'Add',
@@ -37,5 +37,9 @@ return [
     'no' => 'No',
     'img' => 'Image',
     'confirm_delete' => 'Are You Sure From Deleting ' ,
+    'Category'  =>  'Categories',
+    'categorynumber' => 'Category Total' ,
+    'addcat' => 'Add Category' ,
+
 
 ];
