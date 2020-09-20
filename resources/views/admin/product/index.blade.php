@@ -1,6 +1,6 @@
 @extends('admin.layout.adminmaster')
 
-@section( 'title' , 'all categories' )
+@section( 'title' , 'all Products' )
 
 
 
@@ -13,13 +13,13 @@
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark"> @lang('site.Category') </h1>
+              <h1 class="m-0 text-dark"> @lang('site.product') </h1>
   
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">@lang('site.home')</a></li>
-                <li class="breadcrumb-item active">@lang('site.Category')</li>
+                <li class="breadcrumb-item active">@lang('site.product')</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -39,7 +39,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3> {{$allcategories->count()}} </h3>
+                            <h3> {{$allproducts->count()}} </h3>
     
                             <p>@lang('site.categorynumber')</p>
                         </div>
@@ -65,7 +65,7 @@
                 <div class="card">
                     <div class="card-header">
     
-                        <h3 class="card-title"> @lang('site.Category') </h3>
+                        <h3 class="card-title"> @lang('site.product') </h3>
     
                         <div class="card-tools">
                            
@@ -75,7 +75,7 @@
     
     
     
-                         <form action=" {{route('Category.index')}} " method="get">
+                         <form action=" {{route('product.index')}} " method="get">
                             <div class="input-group input-group-sm " style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
                                     placeholder="@lang('site.search')" value="{{request()->table_search}}" >
@@ -101,8 +101,14 @@
                                 <tr>
                                     <th>@lang('site.id')</th>
 
+                                    <th>@lang('site.Category')</th>
                                     <th>@lang('site.name')</th>
-                                    @if (auth()->user()->isAbleTo('categories_delete|categories_update'))
+                                    <th>@lang('site.description')</th>
+                                    <th>@lang('site.img')</th>
+                                    <th>@lang('site.purchase_price')</th>
+                                    <th>@lang('site.sale_price')</th>
+                                    <th>@lang('site.stock')</th>
+                                    @if (auth()->user()->isAbleTo('users_delete|users_update'))
                                     <th>@lang('site.action')</th>
                                     @endif
                                    
@@ -111,30 +117,36 @@
                             </thead>
                             <tbody class="align-self-center">
     
-                                @if ($allcategories->count()>0)
+                                @if ($allproducts->count()>0)
                                
-                                    @foreach ($allcategories as $category)
+                                    @foreach ($allproducts as $product)
                              
                                     <tr>
     
-                                    <th>{{$category->id}}</th>
-                                    <th>{{$category->name}}</th>
+                                    <th>{{$product->id}}</th>
+                                    <th>{{$Category->name}}</th>
+                                    <th>{{$product->description}}</th>
+                                    <th><img src="" alt="" sizes="" srcset=""></th>
+                                    <th>{{$product->purchase_price}}</th>
+                                    <th>{{$product->sale_price}}</th>
+                                    <th>{{$product->stock}}</th>
+
 
                                     <th>
     
-                                    @if (auth()->user()->isAbleTo('categories_update'))
+                                    @if (auth()->user()->isAbleTo('products_update'))
                                     
-                                        <a href='{{url("/admin/Category/{$category->id}/edit")}}' class="btn btn-primary btn-sm "> <i class="fa fa-edit"></i> @lang('site.edt') </a>
-   
+                                        <a href='{{url("/admin/product/{$product->id}/edit")}}' class="btn btn-primary btn-sm "> <i class="fa fa-edit"></i> @lang('site.edt') </a>
+    
                                     @endif
     
     
-                                    @if (auth()->user()->isAbleTo('categories_delete'))
+                                    @if (auth()->user()->isAbleTo('products_delete'))
     
-                                        <form action="{{route('Category.destroy',$category->id)}}" method="post" style="display: inline-block">
+                                        <form action="{{route('product.destroy',$product->id)}}" method="post" style="display: inline-block">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="_method" value="DELETE" >
-                                            <button type="submit" class="btn btn-danger delete btn-sm " data_name="{{$category->name}}"> <i class="fa fa-trash"></i> @lang('site.dlt')</button>
+                                            <button type="submit" class="btn btn-danger delete btn-sm " data_name="{{$product->name}}"> <i class="fa fa-trash"></i> @lang('site.dlt')</button>
                                         </form>
     
                                     @endif
@@ -159,9 +171,9 @@
     
                             </ul> 
     
-                            @if ( auth()->user()->isAbleTo('categories_create') )
+                            @if ( auth()->user()->isAbleTo('products_create') )
                             <div class="input-group input-group  p-2 col-2"  >
-                                <a href="{{url('admin/Category/create')}}" class="btn btn-success col-12"> <i class="fa fa-plus"></i>  @lang('site.crt')</a>
+                                <a href="{{url('admin/product/create')}}" class="btn btn-success col-12"> <i class="fa fa-plus"></i>  @lang('site.crt')</a>
                             </div>
                             @endif
     

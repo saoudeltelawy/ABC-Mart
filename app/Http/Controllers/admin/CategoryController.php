@@ -45,9 +45,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'name' => 'required|unique:categories,name'
-        ]);
+       
+        $roules = [] ;
+
+        foreach( config('translatable.locales') as $locale ){
+
+            $roules += [ $locale . '.name' => ['required',Rule::unique('category_translations' , 'name')]];
+
+        }
+        
+        $request->validate($roules);
+
+
         Category::create($request->all());
 
         session()->flash('success' , __('site.added_successfuly'));
@@ -78,10 +87,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $Category)
     {
+
+        $roules = [] ;
+
+        foreach( config('translatable.locales') as $locale ){
+
+            $roules += [ $locale . '.name' => ['required',Rule::unique('category_translations' , 'name')->ignore($Category->id, 'category_id')]];
+
+        }
         
-        $request->validate([
-            'name' => ['required', Rule::unique('categories')->ignore($Category->id)]
-        ]);
+        $request->validate($roules);
+
 
         $Category->update($request->all());
         

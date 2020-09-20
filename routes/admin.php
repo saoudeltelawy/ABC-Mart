@@ -36,6 +36,9 @@ Route::group(
             Route::resource('/user', 'UserController');
 
             Route::resource('/Category', 'CategoryController');
+
+            Route::resource('/product', 'ProductController');
+
           
             });
 

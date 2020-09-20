@@ -1,6 +1,6 @@
 @extends('admin.layout.adminmaster')
 
-@section('title' , 'Add User')
+@section('title' , 'Add product')
 
 @section('content')
 
@@ -15,7 +15,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">@lang('site.home')</a></li>
-                    <li class="breadcrumb-item"><a href="{{url('/admin/Category')}}">@lang('site.Category')</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('/admin/product')}}">@lang('site.product')</a></li>
                     <li class="breadcrumb-item active">@lang('site.crt')</li>
                 </ol>
             </div><!-- /.col -->
@@ -44,7 +44,7 @@
 
 
                 <!-- form start -->
-                <form role="form" method="POST" action="{{route('Category.store')}}">
+                <form role="form" method="POST" action="{{route('product.store')}}">
 
                     {{ csrf_field() }}
 
@@ -60,8 +60,6 @@
                             <div class="form-group">
 
                             <label for="exampleInputname1"> @lang('site.' . $locale . '.name') </label>
-
-
                             <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Category"
                             name="{{$locale}}[name]"  value="{{old($locale . '.name')}}">
 

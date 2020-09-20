@@ -7,20 +7,20 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
 
-class Category extends Model  implements TranslatableContract
+class Product extends Model implements TranslatableContract
 {
     use Translatable;
    
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['name','description'];
    
     protected $guarded = [];
     
-    
-    
-    public function products(){
 
+    public function category(){
 
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Category::class);
 
     }
+
+
 }

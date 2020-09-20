@@ -11,15 +11,22 @@ return [
     'search' => 'Search',
     'home' => 'Home',
     'lang' => 'Language',
+
+
+
+
     'action' => 'Action',
     'ndf' => 'UnFortuntly we didnt found any records till now',
     'edt' => 'Edit',
     'dlt' => 'Delete',
     'crt' => 'Add',
+    'red' => 'Read',
     'udt' => 'Update',
     'choose_role' => 'Choose Role',
     'choose_permissions' => 'Choose Permissions',
-    'red' => 'Read',
+
+
+
     'Manager' => 'Manager',
     'admin' => 'Admin',
     'user' => 'User',
@@ -29,6 +36,11 @@ return [
     'email' => 'Email Address',
     'pw' => 'Password',
     'pwc' => 'Password Confirm',
+
+
+
+
+
     'added_successfuly' => 'Added Successfuly',
     'update_successfuly' => 'Update Successfuly',
     'delete_successfuly' => 'Delete Successfuly',
@@ -37,9 +49,33 @@ return [
     'no' => 'No',
     'img' => 'Image',
     'confirm_delete' => 'Are You Sure From Deleting ' ,
+
+
+
+
+
     'Category'  =>  'Categories',
     'categorynumber' => 'Category Total' ,
     'addcat' => 'Add Category' ,
+    'description' => 'Description',
+    'purchase_price' => 'Purchase Price',
+    'sale_price' => 'Sale Price',
+    'stock' => 'Stock',
 
+
+
+
+    'product' => 'Products',
+    'productnumber' => 'Products Total',
+
+    
+    'ar' => 
+    [
+        'name' => 'The Name In Arabic',
+    ],
+    'en' => 
+    [
+        'name' => 'The Name In English',
+    ],
 
 ];
